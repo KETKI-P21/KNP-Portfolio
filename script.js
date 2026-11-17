@@ -46,79 +46,54 @@ function typeEffect() {
 }
 
 
-// PROJECT DATA
+// 2. PROJECT DATA
 
 const projects = [
-    {
-        id: "calculator",
-        icon: "🧮",
-        title: "Python Calculator",
-        category: "Python Development",
-        description: "A command-line calculator that performs addition, subtraction, multiplication and division. Uses Python match-case statements and exception handling.",
-        technologies: ["Python", "Match Case", "Exception Handling"]
-    },
-    {
-        id: "water",
-        icon: "💧",
-        title: "Drink Water Reminder",
-        category: "Python Application",
-        description: "A desktop reminder application that encourages users to stay hydrated by sending notifications every hour using the Plyer library.",
-        technologies: ["Python", "Plyer", "Time"]
-    },
-    {
-        id: "qr",
-        icon: "📱",
-        title: "QR Code Generator",
-        category: "Python Development",
-        description: "Generates QR code images from user-provided URLs and saves them as PNG files.",
-        technologies: ["Python", "qrcode", "PNG"]
-    },
-    {
-        id: "quiz",
-        icon: "🎯",
-        title: "Quiz Game",
-        category: "Python Game",
-        description: "An interactive general knowledge quiz featuring multiple-choice questions, answer checking and virtual prize amounts.",
-        technologies: ["Python", "Conditional Logic"]
-    },
-   {
-    id: "jarvis",
-    icon: "🤖",
-    title: "Jarvis AI Assistant",
-    category: "Artificial Intelligence",
-    description: "A personal AI assistant built with Python, Ollama and Llama 3.2. It accepts typed questions, generates AI responses locally and speaks answers using text-to-speech.",
-    technologies: ["Python", "Ollama", "Llama 3.2", "pyttsx3"],
-    github: "https://github.com/KETKI-P21/Jarvis-AI"
-},
 
-        {
-    id: "baka",
-     icon: "🌐",
-    title: "Baka Portfolio",
-    category: "Web Development",
-    description: "A responsive video editing and animation portfolio website featuring categorized video projects and YouTube embeds.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Netlify"],
-    github: "https://github.com/KETKI-P21/baka-portfolio",
-    demo: "https://bakaportfolio.netlify.app"
-}
+    {
+        id: "jarvis",
+        icon: "🤖",
+        title: "Jarvis AI Assistant",
+        category: "Artificial Intelligence",
+        description: "A personal AI assistant built with Python, Ollama and Llama 3.2. It accepts typed questions, generates AI responses locally and speaks answers using text-to-speech.",
+        technologies: ["Python", "Ollama", "Llama 3.2", "pyttsx3"],
+        github: "https://github.com/KETKI-P21/Jarvis-AI"
+    },
+
+    {
+        id: "baka",
+        icon: "🌐",
+        title: "Baka Portfolio",
+        category: "Web Development",
+        description: "A responsive video editing and animation portfolio website featuring categorized video projects and YouTube embeds.",
+        technologies: ["HTML5", "CSS3", "JavaScript", "Netlify"],
+        github: "https://github.com/KETKI-P21/baka-portfolio",
+        demo: "https://bakaportfolio.netlify.app"
+    }
 
 ];
 
 
-
-// DISPLAY PROJECT CARDS
+// 3. DISPLAY PROJECT CARDS
 
 function displayProjects() {
+
     const projectsGrid = document.getElementById("projects-grid");
 
     if (!projectsGrid) return;
 
     projectsGrid.innerHTML = projects.map(project => `
+
         <div class="project-card">
 
             <div class="project-top">
+
                 <div class="project-icon">${project.icon}</div>
-                <span class="project-category">${project.category}</span>
+
+                <span class="project-category">
+                    ${project.category}
+                </span>
+
             </div>
 
             <h3>${project.title}</h3>
@@ -126,9 +101,11 @@ function displayProjects() {
             <p>${project.description}</p>
 
             <div class="tags">
+
                 ${project.technologies.map(tech =>
                     `<span>${tech}</span>`
                 ).join("")}
+
             </div>
 
             <div class="project-actions">
@@ -159,12 +136,16 @@ function displayProjects() {
             </div>
 
         </div>
+
     `).join("");
+
 }
+
 
 // 4. PROJECT DETAILS MODAL
 
 function showProject(projectId) {
+
     const project = projects.find(item => item.id === projectId);
 
     if (!project) return;
@@ -179,51 +160,61 @@ function showProject(projectId) {
     description.textContent = project.description;
 
     modal.style.display = "flex";
+
 }
 
 
 // 5. CLOSE PROJECT MODAL
 
 function closeProject() {
+
     const modal = document.getElementById("project-modal");
 
     if (modal) {
         modal.style.display = "none";
     }
+
 }
 
 
 // Close modal when clicking outside it
 
 window.addEventListener("click", function(event) {
+
     const modal = document.getElementById("project-modal");
 
     if (event.target === modal) {
         closeProject();
     }
+
 });
 
 
 // 6. COPYRIGHT YEAR
 
 function updateFooterYear() {
+
     const yearElement = document.getElementById("year");
 
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+
 }
 
 
 // 7. START EVERYTHING
 
 document.addEventListener("DOMContentLoaded", function() {
+
     typeEffect();
     displayProjects();
     updateFooterYear();
+
 });
 
-// MOBILE NAVIGATION
+
+// 8. MOBILE NAVIGATION
 
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
@@ -237,6 +228,7 @@ if (menuToggle && navLinks) {
         const isOpen = navLinks.classList.contains("active");
 
         menuToggle.textContent = isOpen ? "✕" : "☰";
+
         menuToggle.setAttribute("aria-expanded", isOpen);
 
     });
@@ -246,7 +238,9 @@ if (menuToggle && navLinks) {
         link.addEventListener("click", function() {
 
             navLinks.classList.remove("active");
+
             menuToggle.textContent = "☰";
+
             menuToggle.setAttribute("aria-expanded", "false");
 
         });
